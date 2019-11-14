@@ -24,11 +24,11 @@ public class DogHouseTest {
     @Test
     public void testGetNumberOfDogs() {
         // Given
-
+        DogHouse.clear();
         String name = "Milo";
         Date birthDate = new Date();
         Dog animal = AnimalFactory.createDog(name, birthDate);
-        DogHouse.clear();
+
 
         // When
         DogHouse.add(animal);
@@ -39,12 +39,15 @@ public class DogHouseTest {
     }
     @Test
     public void add() {
-        // Given (some
-        DogHouse dogHouse = new DogHouse();
+        // Given
         String name = "Milo";
         Date birthDate = new Date();
-        Dog animal = AnimalFactory.createDog(name, birthDate);
         DogHouse.clear();
+
+        Dog animal = AnimalFactory.createDog(name, birthDate);
+        DogHouse.add(animal);
+        Dog animal2 = AnimalFactory.createDog(name, birthDate);
+        DogHouse.add(animal2);
 
         //When
         DogHouse.add(animal);
@@ -57,17 +60,17 @@ public class DogHouseTest {
     @Test
     public void remove() {
         // Given
-        DogHouse dogHouse = new DogHouse();
         String name = "Milo";
         Date birthDate = new Date();
-        Dog animal = AnimalFactory.createDog(name, birthDate);
-        Dog animal2 = AnimalFactory.createDog(name, birthDate);
         DogHouse.clear();
 
-        //When
+        Dog animal = AnimalFactory.createDog(name, birthDate);
         DogHouse.add(animal);
+        Dog animal2 = AnimalFactory.createDog(name, birthDate);
         DogHouse.add(animal2);
-       // dogHouse.remove(1);
+
+        //When
+        DogHouse.remove(1);
         Dog actual = DogHouse.getDogById(1);
 
         //Then
@@ -77,16 +80,17 @@ public class DogHouseTest {
     @Test
     public void dogRemove() {
         // Given
-        DogHouse dogHouse = new DogHouse();
         String name = "Milo";
         Date birthDate = new Date();
-        Dog animal = AnimalFactory.createDog(name, birthDate);
-        Dog animal2 = AnimalFactory.createDog(name, birthDate);
         DogHouse.clear();
 
-        //When
+        Dog animal = AnimalFactory.createDog(name, birthDate);
         DogHouse.add(animal);
+        Dog animal2 = AnimalFactory.createDog(name, birthDate);
         DogHouse.add(animal2);
+
+
+        //When
         DogHouse.remove(animal2);
         Dog actual = DogHouse.getDogById(1);
 
@@ -96,20 +100,20 @@ public class DogHouseTest {
     }
 
     @Test
-    public void getCatById() {
+    public void getDogById() {
         // Given
-        DogHouse dogHouse = new DogHouse();
         String name = "Milo";
         Date birthDate = new Date();
-        Dog animal = AnimalFactory.createDog(name, birthDate);
-        Dog animal2 = AnimalFactory.createDog(name, birthDate);
         DogHouse.clear();
 
         //When
+        Dog animal = AnimalFactory.createDog(name, birthDate);
         DogHouse.add(animal);
+        Dog animal2 = AnimalFactory.createDog(name, birthDate);
         DogHouse.add(animal2);
 
-        Dog actual = DogHouse.getDogById(0);
+
+        Dog actual = DogHouse.getDogById(1);
 
         //Then
         Assert.assertEquals(animal2, actual);
@@ -117,15 +121,15 @@ public class DogHouseTest {
 
     @Test
     public void getNumberOfDogs() {
-        //Given
+        // Given
         String name = "Milo";
         Date birthDate = new Date();
-        Dog animal = AnimalFactory.createDog(name, birthDate);
-        Dog animal2 = AnimalFactory.createDog(name, birthDate);
         DogHouse.clear();
 
         //When
+        Dog animal = AnimalFactory.createDog(name, birthDate);
         DogHouse.add(animal);
+        Dog animal2 = AnimalFactory.createDog(name, birthDate);
         DogHouse.add(animal2);
 
         Integer actual = DogHouse.getNumberOfDogs();
@@ -136,16 +140,16 @@ public class DogHouseTest {
 
     @Test
     public void clear() {
-        //Given
-        DogHouse dogHouse = new DogHouse();
-        Date birthdate = new Date();
-        Dog dog = new Dog("Zula", birthdate, 10 );
-        Dog dog2 = new Dog("Asami", birthdate, 101);
+        // Given
+        String name = "Milo";
+        Date birthDate = new Date();
 
 
         //When
-        DogHouse.add(dog);
-        DogHouse.add(dog2);
+        Dog animal = AnimalFactory.createDog(name, birthDate);
+        DogHouse.add(animal);
+        Dog animal2 = AnimalFactory.createDog(name, birthDate);
+        DogHouse.add(animal2);
         DogHouse.clear();
 
         Dog actual = DogHouse.getDogById(10);

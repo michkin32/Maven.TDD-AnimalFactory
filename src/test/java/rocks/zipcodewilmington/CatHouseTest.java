@@ -3,6 +3,7 @@ package rocks.zipcodewilmington;
 import org.junit.Assert;
 import org.junit.Test;
 import rocks.zipcodewilmington.animals.Cat;
+import rocks.zipcodewilmington.animals.animal_creation.AnimalFactory;
 import rocks.zipcodewilmington.animals.animal_storage.CatHouse;
 
 import java.util.Date;
@@ -18,32 +19,39 @@ public class CatHouseTest {
     // TODO - Create tests for `Integer getNumberOfCats()`
     @Test
     public void add() {
-        //Given
-        Date birthdate = new Date();
-        Cat cat = new Cat("Zula", birthdate, 10 );
-        CatHouse catHouse = new CatHouse();
+        // Given
+        String name = "Milo";
+        Date birthDate = new Date();
+        CatHouse.clear();
 
-        //When
-        CatHouse.add(cat);
-        Cat actual = CatHouse.getCatById(10);
+        Cat cat1 = AnimalFactory.createCat(name, birthDate);
+        CatHouse.add(cat1);
+        Cat cat2 = AnimalFactory.createCat(name, birthDate);
+        CatHouse.add(cat2);
+
+
+
+        Cat actual = CatHouse.getCatById(1);
 
         //Then
-        Assert.assertEquals(actual, cat);
+        Assert.assertEquals(actual, cat2);
     }
 
     @Test
     public void remove() {
-        //Given
-        Date birthdate = new Date();
-        Cat cat = new Cat("Zula", birthdate, 10 );
-        Cat cat2 = new Cat("Asami", birthdate, 101);
-        CatHouse catHouse = new CatHouse();
+        // Given
+        String name = "Milo";
+        Date birthDate = new Date();
+        CatHouse.clear();
+
+        Cat cat1 = AnimalFactory.createCat(name, birthDate);
+        CatHouse.add(cat1);
+        Cat cat2 = AnimalFactory.createCat(name, birthDate);
+        CatHouse.add(cat2);
 
         //When
-        CatHouse.add(cat);
-        CatHouse.add(cat2);
-        CatHouse.remove(101);
-        Cat actual = CatHouse.getCatById(101);
+        CatHouse.remove(cat2);
+        Cat actual = CatHouse.getCatById(1);
 
         //Then
         Assert.assertNull(actual);
@@ -51,17 +59,19 @@ public class CatHouseTest {
 
     @Test
     public void catRemove() {
-        //Given
-        Date birthdate = new Date();
-        Cat cat = new Cat("Zula", birthdate, 10 );
-        Cat cat2 = new Cat("Asami", birthdate, 101);
-        CatHouse catHouse = new CatHouse();
+        // Given
+        String name = "Milo";
+        Date birthDate = new Date();
+        CatHouse.clear();
+
+        Cat cat1 = AnimalFactory.createCat(name, birthDate);
+        CatHouse.add(cat1);
+        Cat cat2 = AnimalFactory.createCat(name, birthDate);
+        CatHouse.add(cat2);
 
         //When
-        CatHouse.add(cat);
-        CatHouse.add(cat2);
-        CatHouse.remove(cat2);
-        Cat actual = CatHouse.getCatById(101);
+        CatHouse.remove(1);
+        Cat actual = CatHouse.getCatById(1);
 
         //Then
         Assert.assertNull(actual);
@@ -70,15 +80,19 @@ public class CatHouseTest {
 
     @Test
     public void getCatById() {
-        //Given
-        Date birthdate = new Date();
-        Cat cat = new Cat("Zula", birthdate, 10 );
-        Cat cat2 = new Cat("Asami", birthdate, 101);
-        CatHouse catHouse = new CatHouse();
+        // Given
+        String name = "Milo";
+        Date birthDate = new Date();
+        CatHouse.clear();
+
+        Cat cat1 = AnimalFactory.createCat(name, birthDate);
+        CatHouse.add(cat1);
+        Cat cat2 = AnimalFactory.createCat(name, birthDate);
+        CatHouse.add(cat2);
 
         //When
-        CatHouse.add(cat2);
-        Cat actual = CatHouse.getCatById(101);
+
+        Cat actual = CatHouse.getCatById(1);
 
         //Then
         Assert.assertEquals(actual, cat2);
@@ -86,17 +100,19 @@ public class CatHouseTest {
 
     @Test
     public void getNumberOfCats() {
-        //Given
-        Date birthdate = new Date();
-        Cat cat = new Cat("Zula", birthdate, 10 );
-        Cat cat2 = new Cat("Asami", birthdate, 101);
-        CatHouse catHouse = new CatHouse();
+        // Given
+        String name = "Milo";
+        Date birthDate = new Date();
+        CatHouse.clear();
 
-        //When
-        CatHouse.add(cat);
+        Cat cat1 = AnimalFactory.createCat(name, birthDate);
+        CatHouse.add(cat1);
+        Cat cat2 = AnimalFactory.createCat(name, birthDate);
         CatHouse.add(cat2);
 
+        //When
         Integer actual = CatHouse.getNumberOfCats();
+
 
         //Then
         Assert.assertEquals(actual, (Integer) 2);
@@ -104,19 +120,19 @@ public class CatHouseTest {
 
     @Test
     public void clear() {
-        //Given
-        Date birthdate = new Date();
-        Cat cat = new Cat("Zula", birthdate, 10 );
-        Cat cat2 = new Cat("Asami", birthdate, 101);
-        CatHouse catHouse = new CatHouse();
-
-        //When
-        CatHouse.add(cat);
+        // Given
+        String name = "Milo";
+        Date birthDate = new Date();
+        //when
+        Cat cat1 = AnimalFactory.createCat(name, birthDate);
+        CatHouse.add(cat1);
+        Cat cat2 = AnimalFactory.createCat(name, birthDate);
         CatHouse.add(cat2);
+
         CatHouse.clear();
 
-        Cat actual = CatHouse.getCatById(10);
-        Cat actual2 = CatHouse.getCatById(101);
+        Cat actual = CatHouse.getCatById(0);
+        Cat actual2 = CatHouse.getCatById(1);
 
         //Then
         Assert.assertNull(actual);
