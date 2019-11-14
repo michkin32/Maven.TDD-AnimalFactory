@@ -109,14 +109,12 @@ public class CatTest {
 
         // When (a cat is constructed)
         Cat cat = new Cat(givenName, givenBirthDate, givenId);
-
-        // When (we retrieve data from the cat)
-        cat.setName("Sokka");
         cat.eat(catFood);
 
+        Integer actual = cat.getNumberOfMealsEaten();
 
         // Then (we expect the given data, to match the retrieved data)
-        //Assert.assertEquals("Sokka", retrievedName);
+        Assert.assertEquals((Integer)1, actual);
 
     }
 

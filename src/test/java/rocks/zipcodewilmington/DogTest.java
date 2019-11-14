@@ -105,18 +105,17 @@ public class DogTest {
         String givenName = "Nala";
         Date givenBirthDate = new Date();
         Integer givenId = 0;
-        Food catFood = new Food();
+        Food dogFood = new Food();
 
         // When (a cat is constructed)
         Dog dog = new Dog(givenName, givenBirthDate, givenId);
 
-        // When (we retrieve data from the cat)
-        dog.setName("Sokka");
-        dog.eat(catFood);
+        dog.eat(dogFood);
 
+        Integer actual = dog.getNumberOfMealsEaten();
 
         // Then (we expect the given data, to match the retrieved data)
-        //Assert.assertEquals("Sokka", retrievedName);
+        Assert.assertEquals((Integer)1, actual);
 
     }
 
